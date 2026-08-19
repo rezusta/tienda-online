@@ -1,0 +1,4 @@
+.listado-container {
+  display: grid;
+  gap: 1rem;
+}

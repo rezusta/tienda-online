@@ -1,0 +1,6 @@
+<h2>Lista de clientes</h2>
+
+<div class="listado-container">
+  <app-clientes-listado-filtro (filtroCliente)="filtraClientes($event)"></app-clientes-listado-filtro>
+  <app-clientes-listado (clienteSeleccionado)="seleccionDeCliente($event)" [clientes]="listaclientes"></app-clientes-listado>
+</div>

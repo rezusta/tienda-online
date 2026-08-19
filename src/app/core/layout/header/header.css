@@ -18,3 +18,14 @@ h1 {
   font-size: 24px;
   font-weight: 600;
 }
+
+a {
+  margin-left: auto;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
