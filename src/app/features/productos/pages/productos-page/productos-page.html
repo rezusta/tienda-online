@@ -1,0 +1,13 @@
+<h2>Lista de productos</h2>
+
+<div class="productos-container">
+
+    <div class="listado-container">
+        <app-productos-listado-filtro (filtroProducto)="filtraProductos($event)"></app-productos-listado-filtro>
+        <app-productos-listado (productoSeleccionado)="seleccionDeProducto($event)" [productos]="listaproductos"></app-productos-listado>
+    </div>
+
+    <div class="detalle-container">
+        <app-producto-detalle [producto]="productoSeleccionado"></app-producto-detalle>
+    </div>
+</div>

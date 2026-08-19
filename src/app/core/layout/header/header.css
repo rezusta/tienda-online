@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+div {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+  background-color: #d32f2f;
+  color: white;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}

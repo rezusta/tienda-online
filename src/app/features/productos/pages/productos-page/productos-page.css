@@ -1,0 +1,25 @@
+
+.listado-container {
+  width: 50%;
+}
+
+.productos-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.detalle-container {
+  flex: 1;
+  min-width: 0;
+}
+
+h2 {
+  margin: 0 0 20px;
+  color: #333;
+  font-size: 26px;
+  font-weight: 600;
+  border-left: 5px solid #d32f2f;
+  padding-left: 12px;
+}
