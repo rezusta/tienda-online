@@ -2,5 +2,5 @@
 
 <div class="listado-container">
     <app-productos-listado-filtro (filtroProducto)="filtraProductos($event)"></app-productos-listado-filtro>
-    <app-productos-listado (productoSeleccionado)="seleccionDeProducto($event)" [productos]="listaproductos"></app-productos-listado>
+    <app-productos-listado (productoSeleccionado)="seleccionDeProducto($event)" [productos]="listaproductos()"></app-productos-listado>
 </div>

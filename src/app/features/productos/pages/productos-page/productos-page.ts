@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, input, Signal } from '@angular/core';
 import { ProductosListadoFiltro } from '../../components/productos-listado-filtro/productos-listado-filtro';
 import { ProductosListado } from '../../components/productos-listado/productos-listado';
 import { Producto } from '../../models/producto.interface';
 import { PRODUCTOS_MOCK } from '../../data/productos.mock';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos-page',
@@ -11,17 +12,26 @@ import { PRODUCTOS_MOCK } from '../../data/productos.mock';
   styleUrl: './productos-page.css',
 })
 export class ProductosPage {
-  productoSeleccionado: Producto | null = null;
-  listaproductos: Producto[] = PRODUCTOS_MOCK;
+  router = inject(Router);
+
+  nombre = input<string>();
+  
+  listaproductos: Signal<Producto[]> = computed(() => {
+    if (!this.nombre()) {
+      return PRODUCTOS_MOCK;
+    }
+
+    return PRODUCTOS_MOCK.filter(producto => producto.nombre.toLowerCase().includes(this.nombre()!.toLowerCase()));
+  });
 
   seleccionDeProducto(producto: Producto) {
-    this.productoSeleccionado = producto;
+    this.router.navigate(['/productos', producto.id])
   }
 
-  filtraProductos(filtro: string) {
-    if (filtro != '') {
-      this.listaproductos = this.listaproductos.filter(producto => producto.nombre.toLowerCase().includes(filtro.toLowerCase()));
-    }
+  filtraProductos(filtro: string | null) {
+    this.router.navigate(['/productos'], {
+      queryParams: { nombre: filtro || null }
+    })
   }
 
 }

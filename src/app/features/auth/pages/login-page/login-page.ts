@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -8,11 +9,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login-page.css',
 })
 export class LoginPage {
+  router = inject(Router);
+
   user: string = '';
   pass: string = '';
 
   login() {
-    console.log('Usuario:', this.user);
-    console.log('Contraseña:', this.pass);
+    // Llamo al servidor de autenticación con user y pass.
+    this.router.navigate(['productos']);
   }
 }
