@@ -1,4 +1,10 @@
-<div>
-    <h1>{{titulo}}</h1>
-    <a routerLink="login">Logout</a>
-</div>
+<header>
+  <h1>{{ titulo }}</h1>
+
+  <nav>
+    <a routerLink="productos">Productos</a>
+    <a routerLink="clientes">Clientes</a>
+  </nav>
+
+  <a class="logout"  routerLink="login">Logout</a>
+</header>
