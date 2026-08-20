@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ProductosPage {
   private router = inject(Router);
 
-  nombre = input<string>();
+  nombre = input<string | null>();
 
   listaProductos = computed(() => { 
     if (!this.nombre()) {

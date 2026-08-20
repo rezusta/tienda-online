@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ClientesPage {
   private router = inject(Router);
 
-  nombre = input<string>();
+  nombre = input<string | null>();
 
   listaclientes: Signal<Cliente[]> = computed(() => {
     if (!this.nombre()) {
@@ -27,7 +27,7 @@ export class ClientesPage {
     this.router.navigate(['/clientes', cliente.id]);
   }
 
-  filtraClientes(filtro: string) {
+  filtraClientes(filtro: string | null) {
     this.router.navigate(['/clientes'], { queryParams: { nombre: filtro || null } });
   }
 }
