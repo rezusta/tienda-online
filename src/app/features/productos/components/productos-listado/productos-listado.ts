@@ -1,10 +1,10 @@
 import { Component, input, output } from '@angular/core';
-import { ProductosListadoFiltro } from '../productos-listado-filtro/productos-listado-filtro';
 import { Producto } from '../../models/producto.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-productos-listado',
-  imports: [ProductosListadoFiltro],
+  imports: [RouterLink],
   templateUrl: './productos-listado.html',
   styleUrl: './productos-listado.css',
 })

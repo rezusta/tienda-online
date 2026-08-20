@@ -10,10 +10,11 @@ import { FormsModule } from '@angular/forms';
 export class ClientesListadoFiltro {
   filtroNombre: string = '';
 
-  filtroCliente = output<string>();
+  filtroCliente = output<string | null>();
 
   limpiar() {
     this.filtroNombre = '';
+    this.filtroCliente.emit(null);
   }
 
   buscar() {
