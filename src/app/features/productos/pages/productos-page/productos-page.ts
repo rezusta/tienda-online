@@ -1,28 +1,33 @@
-import { Component, computed, inject, input, Signal } from '@angular/core';
+import { Component, computed, inject, input, resource } from '@angular/core';
 import { ProductosListadoFiltro } from '../../components/productos-listado-filtro/productos-listado-filtro';
 import { ProductosListado } from '../../components/productos-listado/productos-listado';
 import { Producto } from '../../models/producto.interface';
-import { PRODUCTOS_MOCK } from '../../data/productos.mock';
 import { Router } from '@angular/router';
+import { Productos } from '../../services/productos';
+import { firstValueFrom } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-productos-page',
-  imports: [ProductosListado, ProductosListadoFiltro],
+  imports: [ProductosListado, ProductosListadoFiltro, AsyncPipe],
   templateUrl: './productos-page.html',
   styleUrl: './productos-page.css',
 })
 export class ProductosPage {
+  servicioProductos = inject(Productos);
+
+  nombre = input<string>(''); 
+  
   router = inject(Router);
 
-  nombre = input<string>();
-  
-  listaproductos: Signal<Producto[]> = computed(() => {
-    if (!this.nombre()) {
-      return PRODUCTOS_MOCK;
-    }
-
-    return PRODUCTOS_MOCK.filter(producto => producto.description.toLowerCase().includes(this.nombre()!.toLowerCase()));
+  productosResource = resource({ 
+    params: () => ({nombre: this.nombre()}),
+    loader: ({params}) => firstValueFrom(this.servicioProductos.getProductos(params.nombre || '')),
   });
+
+  listaProductos = computed(() =>
+    this.productosResource.value()?.products
+  );
 
   seleccionDeProducto(producto: Producto) {
     this.router.navigate(['/productos', producto.id])

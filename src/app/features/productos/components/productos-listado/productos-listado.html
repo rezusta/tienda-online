@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    @for (producto of productos(); track producto.id) {
+    @for (producto of productos() || []; track producto.id) {
       <tr (click)="onProductoClick(producto)">
         <td>{{ producto.id }}</td>
 

@@ -1,6 +1,7 @@
-import { Component, computed, input, Signal } from '@angular/core';
+import { Component, computed, inject, input, resource, Signal } from '@angular/core';
 import { Cliente } from '../../models/cliente.interface';
-import { CLIENTES_MOCK } from '../../data/clientes.mock';
+import { firstValueFrom } from 'rxjs';
+import { ClientesService } from '../../services/clientes-service';
 
 @Component({
   selector: 'app-cliente-detalle-page',
@@ -10,8 +11,14 @@ import { CLIENTES_MOCK } from '../../data/clientes.mock';
 })
 export class ClienteDetallePage {
   id = input<number>()
-  
+  servicioClientes = inject(ClientesService);
+
+  clienteResource = resource({
+      params: () => ({id: this.id()}),
+      loader: ({params}) => firstValueFrom(this.servicioClientes.getCliente(params.id!)),
+    });
+
   cliente: Signal<Cliente> = computed(() => {
-    return CLIENTES_MOCK.find(cliente => cliente.id == this.id())!;
+    return this.clienteResource.value()!;
   });
 }

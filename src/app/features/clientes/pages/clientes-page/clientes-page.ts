@@ -4,25 +4,21 @@ import { ClientesListado } from '../../components/clientes-listado/clientes-list
 import { ClientesListadoFiltro } from '../../components/clientes-listado-filtro/clientes-listado-filtro';
 import { CLIENTES_MOCK } from '../../data/clientes.mock';
 import { Router } from '@angular/router';
+import { ClientesService } from '../../services/clientes-service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-clientes-page',
-  imports: [ClientesListado, ClientesListadoFiltro],
+  imports: [ClientesListado, ClientesListadoFiltro, AsyncPipe],
   templateUrl: './clientes-page.html',
   styleUrl: './clientes-page.css',
 })
 export class ClientesPage {
   router = inject(Router);
 
-  nombre = input<string>();
+  servicioClientes = inject(ClientesService);
 
-  listaclientes: Signal<Cliente[]> = computed(() => {
-    if (!this.nombre()) {
-      return CLIENTES_MOCK;
-    }
-
-    return CLIENTES_MOCK.filter(cliente => cliente.firstName.toLowerCase().includes(this.nombre()!.toLowerCase()));
-  });
+  respuestaClientes = this.servicioClientes.getClientes();
 
   seleccionDeCliente(cliente: Cliente) {
     this.router.navigate(['/clientes', cliente.id]);

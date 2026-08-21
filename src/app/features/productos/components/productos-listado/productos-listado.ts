@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { ProductosListadoFiltro } from '../productos-listado-filtro/productos-listado-filtro';
-import { Producto } from '../../models/producto.interface';
+import { Producto, ProductosResponse } from '../../models/producto.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './productos-listado.css',
 })
 export class ProductosListado {
-  productos = input<Producto[]>([]);
+  productos = input<Producto[] | undefined>();
   productoSeleccionado = output<Producto>();
 
   onProductoClick(producto: Producto) {
