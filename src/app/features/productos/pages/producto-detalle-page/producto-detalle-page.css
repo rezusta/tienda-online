@@ -1,43 +1,260 @@
 .producto-detalle {
-  padding: 30px;
-  background: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 32px;
 
-h2 {
-  margin: 0 0 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
   color: #333;
-  font-size: 26px;
-  font-weight: 600;
+}
+
+/* Título principal */
+.producto-detalle h2 {
+  margin: 0 0 32px;
+  padding-left: 14px;
+
+  color: #222;
+  font-size: 28px;
+  font-weight: 700;
+
   border-left: 5px solid #d32f2f;
-  padding-left: 12px;
 }
 
+/* Títulos de sección */
+.producto-detalle h3 {
+  margin: 32px 0 16px;
+  padding-bottom: 10px;
+
+  color: #d32f2f;
+  font-size: 18px;
+  font-weight: 600;
+
+  border-bottom: 2px solid #f0f0f0;
+}
+
+/* Grid de información */
 .producto-info {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
+/* Campos */
 .campo {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #eee;
+  flex-direction: column;
+  gap: 7px;
+
+  min-width: 0;
+  padding: 16px;
+
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.campo:hover {
+  transform: translateY(-2px);
+  border-color: #ddd;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Etiquetas */
 .etiqueta {
-  color: #777;
-  font-weight: 600;
+  color: #888;
+
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* Valores */
 .valor {
+  min-width: 0;
+
   color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+/* Precio destacado */
+.precio {
+  background: #fff8f8;
+  border-color: #f1d0d0;
 }
 
 .precio .valor {
   color: #d32f2f;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Imágenes dentro de los campos */
+.valor img {
+  display: block;
+
+  max-width: 180px;
+  height: auto;
+
+  object-fit: contain;
+
+  background: #fff;
+  border-radius: 10px;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+
+  margin: 3px 5px 3px 0;
+  padding: 5px 10px;
+
+  color: #b71c1c;
+  background: #ffebee;
+
+  border-radius: 20px;
+
+  font-size: 12px;
   font-weight: 600;
+}
+
+/* ---------------- */
+/* RESEÑAS          */
+/* ---------------- */
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.review {
+  padding: 18px;
+
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Los campos de una review no necesitan otra tarjeta */
+.review .campo {
+  padding: 10px 0;
+
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.review .campo:last-child {
+  border-bottom: none;
+}
+
+.review .campo:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---------------- */
+/* GALERÍA          */
+/* ---------------- */
+
+.imagenes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.imagenes img {
+  width: 100%;
+  height: 180px;
+  padding: 10px;
+
+  object-fit: contain;
+
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.imagenes img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------- */
+/* TABLET           */
+/* ---------------- */
+
+@media (max-width: 900px) {
+  .producto-detalle {
+    margin: 20px;
+    padding: 24px;
+  }
+
+  .producto-info {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reviews {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------------- */
+/* MÓVIL            */
+/* ---------------- */
+
+@media (max-width: 600px) {
+  .producto-detalle {
+    margin: 10px;
+    padding: 20px;
+
+    border-radius: 8px;
+  }
+
+  .producto-detalle h2 {
+    margin-bottom: 24px;
+    font-size: 23px;
+  }
+
+  .producto-detalle h3 {
+    margin-top: 26px;
+    font-size: 17px;
+  }
+
+  .producto-info,
+  .reviews {
+    grid-template-columns: 1fr;
+  }
+
+  .campo {
+    padding: 14px;
+  }
+
+  .imagenes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .imagenes img {
+    height: 140px;
+  }
 }

@@ -21,7 +21,7 @@ export class ProductosPage {
       return PRODUCTOS_MOCK;
     }
 
-    return PRODUCTOS_MOCK.filter(producto => producto.nombre.toLowerCase().includes(this.nombre()!.toLowerCase()));
+    return PRODUCTOS_MOCK.filter(producto => producto.description.toLowerCase().includes(this.nombre()!.toLowerCase()));
   });
 
   seleccionDeProducto(producto: Producto) {

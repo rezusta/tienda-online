@@ -1,6 +1,9 @@
 <section class="producto-detalle">
   <h2>Detalle del producto</h2>
 
+  <!-- Información principal -->
+  <h3>Información general</h3>
+
   <div class="producto-info">
     <div class="campo">
       <span class="etiqueta">ID</span>
@@ -9,17 +12,226 @@
 
     <div class="campo">
       <span class="etiqueta">Nombre</span>
-      <span class="valor">{{ producto().nombre }}</span>
+      <span class="valor">{{ producto().title }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Categoría</span>
+      <span class="valor">{{ producto().category }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Marca</span>
+      <span class="valor">{{ producto().brand }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">SKU</span>
+      <span class="valor">{{ producto().sku }}</span>
     </div>
 
     <div class="campo">
       <span class="etiqueta">Descripción</span>
-      <span class="valor">{{ producto().descripcion }}</span>
+      <span class="valor">{{ producto().description }}</span>
     </div>
+  </div>
 
+  <!-- Imagen -->
+  <h3>Imagen</h3>
+
+  <div class="producto-info">
+    <div class="campo">
+      <span class="etiqueta">Imagen principal</span>
+
+      <span class="valor">
+        <img
+          [src]="producto().thumbnail"
+          [alt]="producto().title"
+          width="180"
+        />
+      </span>
+    </div>
+  </div>
+
+  <!-- Precio y stock -->
+  <h3>Precio y disponibilidad</h3>
+
+  <div class="producto-info">
     <div class="campo precio">
       <span class="etiqueta">Precio</span>
-      <span class="valor">{{ producto().precio }} €</span>
+      <span class="valor">{{ producto().price }} €</span>
     </div>
+
+    <div class="campo">
+      <span class="etiqueta">Descuento</span>
+      <span class="valor">{{ producto().discountPercentage }} %</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Valoración</span>
+      <span class="valor">⭐ {{ producto().rating }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Stock</span>
+      <span class="valor">{{ producto().stock }} unidades</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Disponibilidad</span>
+      <span class="valor">{{ producto().availabilityStatus }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Pedido mínimo</span>
+      <span class="valor">
+        {{ producto().minimumOrderQuantity }} unidades
+      </span>
+    </div>
+  </div>
+
+  <!-- Características -->
+  <h3>Características</h3>
+
+  <div class="producto-info">
+    <div class="campo">
+      <span class="etiqueta">Peso</span>
+      <span class="valor">{{ producto().weight }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Ancho</span>
+      <span class="valor">{{ producto().dimensions.width }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Alto</span>
+      <span class="valor">{{ producto().dimensions.height }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Profundidad</span>
+      <span class="valor">{{ producto().dimensions.depth }}</span>
+    </div>
+  </div>
+
+  <!-- Etiquetas -->
+  <h3>Etiquetas</h3>
+
+  <div class="producto-info">
+    <div class="campo">
+      <span class="etiqueta">Tags</span>
+
+      <span class="valor">
+        @for (tag of producto().tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+        }
+      </span>
+    </div>
+  </div>
+
+  <!-- Envío y garantía -->
+  <h3>Envío, garantía y devoluciones</h3>
+
+  <div class="producto-info">
+    <div class="campo">
+      <span class="etiqueta">Garantía</span>
+      <span class="valor">{{ producto().warrantyInformation }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Envío</span>
+      <span class="valor">{{ producto().shippingInformation }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Política de devolución</span>
+      <span class="valor">{{ producto().returnPolicy }}</span>
+    </div>
+  </div>
+
+  <!-- Reseñas -->
+  <h3>Reseñas</h3>
+
+  <div class="reviews">
+    @for (review of producto().reviews; track $index) {
+      <div class="review">
+        <div class="campo">
+          <span class="etiqueta">Valoración</span>
+          <span class="valor">⭐ {{ review.rating }}</span>
+        </div>
+
+        <div class="campo">
+          <span class="etiqueta">Comentario</span>
+          <span class="valor">{{ review.comment }}</span>
+        </div>
+
+        <div class="campo">
+          <span class="etiqueta">Usuario</span>
+          <span class="valor">{{ review.reviewerName }}</span>
+        </div>
+
+        <div class="campo">
+          <span class="etiqueta">Email</span>
+          <span class="valor">{{ review.reviewerEmail }}</span>
+        </div>
+
+        <div class="campo">
+          <span class="etiqueta">Fecha</span>
+          <span class="valor">
+            {{ review.date }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Metadatos -->
+  <h3>Metadatos</h3>
+
+  <div class="producto-info">
+    <div class="campo">
+      <span class="etiqueta">Código de barras</span>
+      <span class="valor">{{ producto().meta.barcode }}</span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Fecha de creación</span>
+      <span class="valor">
+        {{ producto().meta.createdAt }}
+      </span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Última actualización</span>
+      <span class="valor">
+        {{ producto().meta.updatedAt }}
+      </span>
+    </div>
+
+    <div class="campo">
+      <span class="etiqueta">Código QR</span>
+
+      <span class="valor">
+        <img
+          [src]="producto().meta.qrCode"
+          alt="Código QR"
+          width="100"
+        />
+      </span>
+    </div>
+  </div>
+
+  <!-- Imágenes -->
+  <h3>Imágenes</h3>
+
+  <div class="imagenes">
+    @for (imagen of producto().images; track imagen) {
+      <img
+        [src]="imagen"
+        [alt]="producto().title"
+        width="150"
+      />
+    }
   </div>
 </section>

@@ -2,9 +2,14 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Nombre</th>
-      <th>Descripción</th>
+      <th>Imagen</th>
+      <th>Producto</th>
+      <th>Categoría</th>
+      <th>Marca</th>
       <th>Precio</th>
+      <th>Stock</th>
+      <th>Valoración</th>
+      <th>Estado</th>
     </tr>
   </thead>
 
@@ -12,9 +17,29 @@
     @for (producto of productos(); track producto.id) {
       <tr (click)="onProductoClick(producto)">
         <td>{{ producto.id }}</td>
-        <td>{{ producto.nombre }}</td>
-        <td>{{ producto.descripcion }}</td>
-        <td>{{ producto.precio }}</td>
+
+        <td>
+          <img
+            [src]="producto.thumbnail"
+            [alt]="producto.title"
+            width="50"
+            height="50"
+          />
+        </td>
+
+        <td>{{ producto.title }}</td>
+
+        <td>{{ producto.category }}</td>
+
+        <td>{{ producto.brand }}</td>
+
+        <td>{{ producto.price }} €</td>
+
+        <td>{{ producto.stock }}</td>
+
+        <td>⭐ {{ producto.rating }}</td>
+
+        <td>{{ producto.availabilityStatus }}</td>
       </tr>
     }
   </tbody>

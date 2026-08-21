@@ -21,7 +21,7 @@ export class ClientesPage {
       return CLIENTES_MOCK;
     }
 
-    return CLIENTES_MOCK.filter(cliente => cliente.nombre.toLowerCase().includes(this.nombre()!.toLowerCase()));
+    return CLIENTES_MOCK.filter(cliente => cliente.firstName.toLowerCase().includes(this.nombre()!.toLowerCase()));
   });
 
   seleccionDeCliente(cliente: Cliente) {

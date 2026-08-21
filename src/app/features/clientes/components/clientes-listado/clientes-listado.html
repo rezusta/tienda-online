@@ -4,7 +4,11 @@
       <th>ID</th>
       <th>Nombre</th>
       <th>Apellidos</th>
+      <th>Edad</th>
       <th>Email</th>
+      <th>Teléfono</th>
+      <th>Empresa</th>
+      <th>Rol</th>
     </tr>
   </thead>
 
@@ -12,9 +16,13 @@
     @for (cliente of clientes(); track cliente.id) {
       <tr (click)="onClienteClick(cliente)">
         <td>{{ cliente.id }}</td>
-        <td>{{ cliente.nombre }}</td>
-        <td>{{ cliente.apellidos }}</td>
+        <td>{{ cliente.firstName }}</td>
+        <td>{{ cliente.lastName }}</td>
+        <td>{{ cliente.age }}</td>
         <td>{{ cliente.email }}</td>
+        <td>{{ cliente.phone }}</td>
+        <td>{{ cliente.company.name }}</td>
+        <td>{{ cliente.role }}</td>
       </tr>
     }
   </tbody>
