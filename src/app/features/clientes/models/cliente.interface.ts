@@ -1,3 +1,10 @@
+export interface ClientesResponse {
+  clients: Cliente[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+ 
 export interface Cliente {
   id: number;
   firstName: string;

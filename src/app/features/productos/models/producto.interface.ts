@@ -1,3 +1,10 @@
+export interface ProductosResponse {
+  products: Producto[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+ 
 export interface Producto {
   id: number;
   title: string;
