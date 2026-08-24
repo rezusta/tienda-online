@@ -91,5 +91,32 @@ export const mockApiInterceptor: HttpInterceptorFn = (req, next) => {
 
   }
 
+  const expedienteDetalleMatch = req.method === 'GET'
+    ? req.url.match(/^\/api\/expedientes\/([^/]+)$/)
+    : null;
+
+  if (expedienteDetalleMatch) {
+
+    const numero = expedienteDetalleMatch[1];
+    const expediente = EXPEDIENTES_MOCK.find(exp => exp.numero === numero);
+
+    if (!expediente) {
+      return of(
+        new HttpResponse({
+          status: 404,
+          body: null
+        })
+      );
+    }
+
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: expediente
+      })
+    );
+
+  }
+
   return next(req);
 };
