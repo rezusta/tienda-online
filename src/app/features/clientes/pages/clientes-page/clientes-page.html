@@ -2,5 +2,11 @@
 
 <div class="listado-container">
   <app-clientes-listado-filtro (filtroCliente)="filtraClientes($event)"></app-clientes-listado-filtro>
-  <app-clientes-listado (clienteSeleccionado)="seleccionDeCliente($event)" [respuestaClientes]="respuestaClientes()"></app-clientes-listado>
+  @if (this.cargandoClientes()) {
+    <p>Loading...</p>
+  } @else if (this.errorClientes()) {
+    <p>Error: {{ this.errorClientes()!.message }}</p>
+  } @else {
+    <app-clientes-listado (clienteSeleccionado)="seleccionDeCliente($event)" [respuestaClientes]="respuestaClientes()"></app-clientes-listado>
+  }
 </div>

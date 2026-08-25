@@ -1,9 +1,10 @@
-import { Component, computed, inject, input, Signal } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductosListadoFiltro } from '../../components/productos-listado-filtro/productos-listado-filtro';
 import { ProductosListado } from '../../components/productos-listado/productos-listado';
 import { Producto } from '../../models/producto.interface';
-import { PRODUCTOS_MOCK } from '../../data/productos.mock';
 import { Router } from '@angular/router';
+import { ProductosService } from '../../services/productos-service';
 
 @Component({
   selector: 'app-productos-page',
@@ -13,16 +14,20 @@ import { Router } from '@angular/router';
 })
 export class ProductosPage {
   router = inject(Router);
+  servicioProductos = inject(ProductosService);
 
   nombre = input<string>();
-  
-  listaproductos: Signal<Producto[]> = computed(() => {
-    if (!this.nombre()) {
-      return PRODUCTOS_MOCK;
-    }
 
-    return PRODUCTOS_MOCK.filter(producto => producto.description.toLowerCase().includes(this.nombre()!.toLowerCase()));
+  recursoCambioFiltro = rxResource({
+    params: () => ({ filtroNombreProducto: this.nombre() }),
+    stream: ({ params }) =>
+      this.servicioProductos.getProductos(params.filtroNombreProducto || ''),
   });
+
+  cargandoProductos = this.recursoCambioFiltro.isLoading;
+  errorProductos = this.recursoCambioFiltro.error;
+  respuestaProductos = this.recursoCambioFiltro.value;
+  listaproductos = computed(() => this.respuestaProductos()?.products ?? []);
 
   seleccionDeProducto(producto: Producto) {
     this.router.navigate(['/productos', producto.id])
