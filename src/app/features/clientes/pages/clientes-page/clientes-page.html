@@ -2,5 +2,5 @@
 
 <div class="listado-container">
   <app-clientes-listado-filtro (filtroCliente)="filtraClientes($event)"></app-clientes-listado-filtro>
-  <app-clientes-listado (clienteSeleccionado)="seleccionDeCliente($event)" [respuestaClientes]="respuestaClientes | async"></app-clientes-listado>
+  <app-clientes-listado (clienteSeleccionado)="seleccionDeCliente($event)" [respuestaClientes]="respuestaClientes()"></app-clientes-listado>
 </div>

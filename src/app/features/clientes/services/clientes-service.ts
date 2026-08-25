@@ -7,7 +7,11 @@ import { Observable } from 'rxjs';
 export class ClientesService {
    httpClient = inject(HttpClient);
 
-   getClientes(): Observable<ClientesResponse> {
-        return this.httpClient.get<ClientesResponse>('https://dummyjson.com/users');
+   getClientes(filtroNombre: string): Observable<ClientesResponse> {
+        return this.httpClient.get<ClientesResponse>('https://dummyjson.com/users/search', {
+         params: {
+            q: filtroNombre || ''
+         }
+        });
    }
 }
