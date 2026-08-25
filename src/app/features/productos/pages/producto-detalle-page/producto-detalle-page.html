@@ -1,5 +1,10 @@
-<section class="producto-detalle">
-  <h2>Detalle del producto</h2>
+@if (cargandoProducto()) {
+  <p>Cargando información del producto...</p>
+} @else if (errorProducto()) {
+  <p>Error al cargar la información del producto: {{ errorProducto() }}</p>
+} @else {
+  <section class="producto-detalle">
+    <h2>Detalle del producto</h2>
 
   <!-- Información principal -->
   <h3>Información general</h3>
@@ -234,4 +239,5 @@
       />
     }
   </div>
-</section>
+  </section>
+}

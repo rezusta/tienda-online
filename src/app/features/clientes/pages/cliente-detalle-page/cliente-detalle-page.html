@@ -1,309 +1,316 @@
-<section class="cliente-detalle">
-  <h2>Detalle del cliente</h2>
+@if (cargandoCliente()) {
+  <p>Cargando información del cliente...</p>
+} @else if (errorCliente()) {
+  <p>Error al cargar la información del cliente: {{ errorCliente() }}</p>
+} @else {
+  <section class="cliente-detalle">
+    <h2>Detalle del cliente</h2>
 
-  <!-- Información personal -->
-  <h3>Información personal</h3>
+    <!-- Información personal -->
+    <h3>Información personal</h3>
 
-  <div class="cliente-info">
-    <div class="campo">
-      <span class="etiqueta">ID</span>
-      <span class="valor">{{ cliente().id }}</span>
+    <div class="cliente-info">
+      <div class="campo">
+        <span class="etiqueta">ID</span>
+        <span class="valor">{{ cliente()!.id }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Nombre</span>
+        <span class="valor">{{ cliente()!.firstName }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Apellidos</span>
+        <span class="valor">{{ cliente()!.lastName }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Apellido de soltera</span>
+        <span class="valor">{{ cliente()!.maidenName }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Edad</span>
+        <span class="valor">{{ cliente()!.age }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Género</span>
+        <span class="valor">{{ cliente()!.gender }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Fecha de nacimiento</span>
+        <span class="valor">{{ cliente()!.birthDate }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Grupo sanguíneo</span>
+        <span class="valor">{{ cliente()!.bloodGroup }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Altura</span>
+        <span class="valor">{{ cliente()!.height }} cm</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Peso</span>
+        <span class="valor">{{ cliente()!.weight }} kg</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Color de ojos</span>
+        <span class="valor">{{ cliente()!.eyeColor }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Color de pelo</span>
+        <span class="valor">{{ cliente()!.hair.color }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Tipo de pelo</span>
+        <span class="valor">{{ cliente()!.hair.type }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Imagen</span>
+        <span class="valor">
+          <img
+            [src]="cliente()!.image"
+            [alt]="cliente()!.firstName"
+            width="128"
+            height="128"
+          />
+        </span>
+      </div>
     </div>
 
-    <div class="campo">
-      <span class="etiqueta">Nombre</span>
-      <span class="valor">{{ cliente().firstName }}</span>
+    <!-- Contacto -->
+    <h3>Contacto</h3>
+
+    <div class="cliente-info">
+      <div class="campo">
+        <span class="etiqueta">Email</span>
+        <span class="valor">{{ cliente()!.email }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Teléfono</span>
+        <span class="valor">{{ cliente()!.phone }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Usuario</span>
+        <span class="valor">{{ cliente()!.username }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Contraseña</span>
+        <span class="valor">{{ cliente()!.password }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Rol</span>
+        <span class="valor">{{ cliente()!.role }}</span>
+      </div>
     </div>
 
-    <div class="campo">
-      <span class="etiqueta">Apellidos</span>
-      <span class="valor">{{ cliente().lastName }}</span>
+    <!-- Dirección -->
+    <h3>Dirección</h3>
+
+    <div class="cliente-info">
+      <div class="campo">
+        <span class="etiqueta">Dirección</span>
+        <span class="valor">{{ cliente()!.address.address }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Ciudad</span>
+        <span class="valor">{{ cliente()!.address.city }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Estado</span>
+        <span class="valor">{{ cliente()!.address.state }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Código de estado</span>
+        <span class="valor">{{ cliente()!.address.stateCode }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Código postal</span>
+        <span class="valor">{{ cliente()!.address.postalCode }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">País</span>
+        <span class="valor">{{ cliente()!.address.country }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Latitud</span>
+        <span class="valor">{{ cliente()!.address.coordinates.lat }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Longitud</span>
+        <span class="valor">{{ cliente()!.address.coordinates.lng }}</span>
+      </div>
     </div>
 
-    <div class="campo">
-      <span class="etiqueta">Apellido de soltera</span>
-      <span class="valor">{{ cliente().maidenName }}</span>
+    <!-- Formación y empresa -->
+    <h3>Formación y empresa</h3>
+
+    <div class="cliente-info">
+      <div class="campo">
+        <span class="etiqueta">Universidad</span>
+        <span class="valor">{{ cliente()!.university }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Empresa</span>
+        <span class="valor">{{ cliente()!.company.name }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Departamento</span>
+        <span class="valor">{{ cliente()!.company.department }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Puesto</span>
+        <span class="valor">{{ cliente()!.company.title }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Dirección empresa</span>
+        <span class="valor">{{ cliente()!.company.address.address }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Ciudad empresa</span>
+        <span class="valor">{{ cliente()!.company.address.city }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Estado empresa</span>
+        <span class="valor">{{ cliente()!.company.address.state }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Código de estado</span>
+        <span class="valor">{{ cliente()!.company.address.stateCode }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Código postal</span>
+        <span class="valor">{{ cliente()!.company.address.postalCode }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">País</span>
+        <span class="valor">{{ cliente()!.company.address.country }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Latitud</span>
+        <span class="valor">
+          {{ cliente()!.company.address.coordinates.lat }}
+        </span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Longitud</span>
+        <span class="valor">
+          {{ cliente()!.company.address.coordinates.lng }}
+        </span>
+      </div>
     </div>
 
-    <div class="campo">
-      <span class="etiqueta">Edad</span>
-      <span class="valor">{{ cliente().age }}</span>
+    <!-- Datos bancarios -->
+    <h3>Datos bancarios</h3>
+
+    <div class="cliente-info">
+      <div class="campo">
+        <span class="etiqueta">Número de tarjeta</span>
+        <span class="valor">{{ cliente()!.bank.cardNumber }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Caducidad</span>
+        <span class="valor">{{ cliente()!.bank.cardExpire }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Tipo de tarjeta</span>
+        <span class="valor">{{ cliente()!.bank.cardType }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Moneda</span>
+        <span class="valor">{{ cliente()!.bank.currency }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">IBAN</span>
+        <span class="valor">{{ cliente()!.bank.iban }}</span>
+      </div>
     </div>
 
-    <div class="campo">
-      <span class="etiqueta">Género</span>
-      <span class="valor">{{ cliente().gender }}</span>
+    <!-- Criptomonedas -->
+    <h3>Criptomonedas</h3>
+
+    <div class="cliente-info">
+      <div class="campo">
+        <span class="etiqueta">Moneda</span>
+        <span class="valor">{{ cliente()!.crypto.coin }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Wallet</span>
+        <span class="valor">{{ cliente()!.crypto.wallet }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Red</span>
+        <span class="valor">{{ cliente()!.crypto.network }}</span>
+      </div>
     </div>
 
-    <div class="campo">
-      <span class="etiqueta">Fecha de nacimiento</span>
-      <span class="valor">{{ cliente().birthDate }}</span>
+    <!-- Información técnica -->
+    <h3>Información técnica</h3>
+
+    <div class="cliente-info">
+      <div class="campo">
+        <span class="etiqueta">IP</span>
+        <span class="valor">{{ cliente()!.ip }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">Dirección MAC</span>
+        <span class="valor">{{ cliente()!.macAddress }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">User Agent</span>
+        <span class="valor">{{ cliente()!.userAgent }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">EIN</span>
+        <span class="valor">{{ cliente()!.ein }}</span>
+      </div>
+
+      <div class="campo">
+        <span class="etiqueta">SSN</span>
+        <span class="valor">{{ cliente()!.ssn }}</span>
+      </div>
     </div>
+  </section>
+}
 
-    <div class="campo">
-      <span class="etiqueta">Grupo sanguíneo</span>
-      <span class="valor">{{ cliente().bloodGroup }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Altura</span>
-      <span class="valor">{{ cliente().height }} cm</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Peso</span>
-      <span class="valor">{{ cliente().weight }} kg</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Color de ojos</span>
-      <span class="valor">{{ cliente().eyeColor }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Color de pelo</span>
-      <span class="valor">{{ cliente().hair.color }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Tipo de pelo</span>
-      <span class="valor">{{ cliente().hair.type }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Imagen</span>
-      <span class="valor">
-        <img
-          [src]="cliente().image"
-          [alt]="cliente().firstName"
-          width="128"
-          height="128"
-        />
-      </span>
-    </div>
-  </div>
-
-  <!-- Contacto -->
-  <h3>Contacto</h3>
-
-  <div class="cliente-info">
-    <div class="campo">
-      <span class="etiqueta">Email</span>
-      <span class="valor">{{ cliente().email }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Teléfono</span>
-      <span class="valor">{{ cliente().phone }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Usuario</span>
-      <span class="valor">{{ cliente().username }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Contraseña</span>
-      <span class="valor">{{ cliente().password }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Rol</span>
-      <span class="valor">{{ cliente().role }}</span>
-    </div>
-  </div>
-
-  <!-- Dirección -->
-  <h3>Dirección</h3>
-
-  <div class="cliente-info">
-    <div class="campo">
-      <span class="etiqueta">Dirección</span>
-      <span class="valor">{{ cliente().address.address }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Ciudad</span>
-      <span class="valor">{{ cliente().address.city }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Estado</span>
-      <span class="valor">{{ cliente().address.state }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Código de estado</span>
-      <span class="valor">{{ cliente().address.stateCode }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Código postal</span>
-      <span class="valor">{{ cliente().address.postalCode }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">País</span>
-      <span class="valor">{{ cliente().address.country }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Latitud</span>
-      <span class="valor">{{ cliente().address.coordinates.lat }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Longitud</span>
-      <span class="valor">{{ cliente().address.coordinates.lng }}</span>
-    </div>
-  </div>
-
-  <!-- Formación y empresa -->
-  <h3>Formación y empresa</h3>
-
-  <div class="cliente-info">
-    <div class="campo">
-      <span class="etiqueta">Universidad</span>
-      <span class="valor">{{ cliente().university }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Empresa</span>
-      <span class="valor">{{ cliente().company.name }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Departamento</span>
-      <span class="valor">{{ cliente().company.department }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Puesto</span>
-      <span class="valor">{{ cliente().company.title }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Dirección empresa</span>
-      <span class="valor">{{ cliente().company.address.address }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Ciudad empresa</span>
-      <span class="valor">{{ cliente().company.address.city }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Estado empresa</span>
-      <span class="valor">{{ cliente().company.address.state }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Código de estado</span>
-      <span class="valor">{{ cliente().company.address.stateCode }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Código postal</span>
-      <span class="valor">{{ cliente().company.address.postalCode }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">País</span>
-      <span class="valor">{{ cliente().company.address.country }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Latitud</span>
-      <span class="valor">
-        {{ cliente().company.address.coordinates.lat }}
-      </span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Longitud</span>
-      <span class="valor">
-        {{ cliente().company.address.coordinates.lng }}
-      </span>
-    </div>
-  </div>
-
-  <!-- Datos bancarios -->
-  <h3>Datos bancarios</h3>
-
-  <div class="cliente-info">
-    <div class="campo">
-      <span class="etiqueta">Número de tarjeta</span>
-      <span class="valor">{{ cliente().bank.cardNumber }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Caducidad</span>
-      <span class="valor">{{ cliente().bank.cardExpire }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Tipo de tarjeta</span>
-      <span class="valor">{{ cliente().bank.cardType }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Moneda</span>
-      <span class="valor">{{ cliente().bank.currency }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">IBAN</span>
-      <span class="valor">{{ cliente().bank.iban }}</span>
-    </div>
-  </div>
-
-  <!-- Criptomonedas -->
-  <h3>Criptomonedas</h3>
-
-  <div class="cliente-info">
-    <div class="campo">
-      <span class="etiqueta">Moneda</span>
-      <span class="valor">{{ cliente().crypto.coin }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Wallet</span>
-      <span class="valor">{{ cliente().crypto.wallet }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Red</span>
-      <span class="valor">{{ cliente().crypto.network }}</span>
-    </div>
-  </div>
-
-  <!-- Información técnica -->
-  <h3>Información técnica</h3>
-
-  <div class="cliente-info">
-    <div class="campo">
-      <span class="etiqueta">IP</span>
-      <span class="valor">{{ cliente().ip }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">Dirección MAC</span>
-      <span class="valor">{{ cliente().macAddress }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">User Agent</span>
-      <span class="valor">{{ cliente().userAgent }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">EIN</span>
-      <span class="valor">{{ cliente().ein }}</span>
-    </div>
-
-    <div class="campo">
-      <span class="etiqueta">SSN</span>
-      <span class="valor">{{ cliente().ssn }}</span>
-    </div>
-  </div>
-</section>

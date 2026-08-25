@@ -1,6 +1,6 @@
-import { Component, computed, input, Signal } from '@angular/core';
-import { Cliente } from '../../models/cliente.interface';
-import { CLIENTES_MOCK } from '../../data/clientes.mock';
+import { Component, inject, input } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { ClientesService } from '../../services/clientes-service';
 
 @Component({
   selector: 'app-cliente-detalle-page',
@@ -10,8 +10,16 @@ import { CLIENTES_MOCK } from '../../data/clientes.mock';
 })
 export class ClienteDetallePage {
   id = input<number>()
+
+  servicioClientes = inject(ClientesService);
   
-  cliente: Signal<Cliente> = computed(() => {
-    return CLIENTES_MOCK.find(cliente => cliente.id == this.id())!;
-  });
+  recursoCliente = rxResource({
+    params: () => ({ idCliente: this.id()}),
+    stream: ({ params }) => this.servicioClientes.getCliente(params.idCliente!)
+  })
+
+  cliente = this.recursoCliente.value;
+  cargandoCliente = this.recursoCliente.isLoading;
+  errorCliente = this.recursoCliente.error;
+  
 }

@@ -1,6 +1,6 @@
-import { Component, computed, input, Signal } from '@angular/core';
-import { Producto } from '../../models/producto.interface';
-import { PRODUCTOS_MOCK } from '../../data/productos.mock';
+import { Component, computed, inject, input } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { ProductosService } from '../../services/productos-service';
 
 @Component({
   selector: 'app-producto-detalle-page',
@@ -10,8 +10,15 @@ import { PRODUCTOS_MOCK } from '../../data/productos.mock';
 })
 export class ProductoDetallePage {
   id = input<number>()
-  
-  producto: Signal<Producto> = computed(() => {
-    return PRODUCTOS_MOCK.find(producto => producto.id == this.id())!;
+
+  servicioProductos = inject(ProductosService);
+
+  recursoProducto = rxResource({
+    params: () => ({ idProducto: this.id() }),
+    stream: ({ params }) => this.servicioProductos.getProducto(params.idProducto!),
   });
+
+  producto = computed(() => this.recursoProducto.value()!);
+  cargandoProducto = this.recursoProducto.isLoading;
+  errorProducto = this.recursoProducto.error;
 }
