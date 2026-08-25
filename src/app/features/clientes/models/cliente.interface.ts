@@ -1,5 +1,5 @@
 export interface ClientesResponse {
-  clients: Cliente[];
+  users: Cliente[];
   total: number;
   skip: number;
   limit: number;

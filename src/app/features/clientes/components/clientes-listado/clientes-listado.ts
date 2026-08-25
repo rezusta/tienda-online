@@ -1,5 +1,5 @@
-import { Component, input, output } from '@angular/core';
-import { Cliente } from '../../models/cliente.interface';
+import { Component, input, OnInit, output } from '@angular/core';
+import { Cliente, ClientesResponse } from '../../models/cliente.interface';
 import { ClientesListadoFiltro } from '../clientes-listado-filtro/clientes-listado-filtro';
 
 @Component({
@@ -9,7 +9,7 @@ import { ClientesListadoFiltro } from '../clientes-listado-filtro/clientes-lista
   styleUrl: './clientes-listado.css',
 })
 export class ClientesListado {
-  clientes = input<Cliente[]>([]);
+  respuestaClientes = input<ClientesResponse | null>();
   clienteSeleccionado = output<Cliente>();
 
   onClienteClick(cliente: Cliente) {
