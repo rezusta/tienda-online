@@ -7,6 +7,15 @@
   } @else if (this.errorClientes()) {
     <p>Error: {{ this.errorClientes()!.message }}</p>
   } @else {
-    <app-clientes-listado (clienteSeleccionado)="seleccionDeCliente($event)" [respuestaClientes]="respuestaClientes()"></app-clientes-listado>
+    <app-clientes-listado 
+      (clienteSeleccionado)="seleccionDeCliente($event)" 
+      [respuestaClientes]="respuestaClientes()"
+    />
+    <app-clientes-listado-paginacion 
+      [skip]="respuestaClientes()!.skip"
+      [totalItems]="respuestaClientes()!.total"
+      [itemsPorPagina]="itemsPorPagina"
+      (cambioPagina)="cambioPagina($event)"
+    />
   }
 </div>

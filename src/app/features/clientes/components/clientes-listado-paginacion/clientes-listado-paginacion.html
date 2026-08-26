@@ -1,0 +1,13 @@
+<div class="paginador">
+  <button [disabled]="primeraPagina()" (click)="clickCambioPagina(paginaActual() - 1)" class="paginador__btn">
+    ← Anterior
+  </button>
+
+  <span class="paginador__pagina">
+    {{ paginaActual() }}
+  </span>
+
+  <button [disabled]="ultimaPagina()" (click)="clickCambioPagina(paginaActual() + 1)" class="paginador__btn">
+    Siguiente →
+  </button>
+</div>
