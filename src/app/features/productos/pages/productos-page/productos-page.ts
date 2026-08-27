@@ -4,11 +4,12 @@ import { ProductosListadoFiltro } from '../../components/productos-listado-filtr
 import { ProductosListado } from '../../components/productos-listado/productos-listado';
 import { Producto } from '../../models/producto.interface';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ProductosService } from '../../services/productos-service';
 
 @Component({
   selector: 'app-productos-page',
-  imports: [ProductosListado, ProductosListadoFiltro],
+  imports: [ProductosListado, ProductosListadoFiltro, RouterLink],
   templateUrl: './productos-page.html',
   styleUrl: './productos-page.css',
 })

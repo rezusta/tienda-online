@@ -20,12 +20,12 @@ export const routes: Routes = [
         component: ProductosPage
     },
     {
-        path: 'productos/:id',
-        component: ProductoDetallePage
+        path: 'productos/nuevo',
+        component: ProductoCrearPage
     },
     {
-        path: 'producto/nuevo',
-        component: ProductoCrearPage
+        path: 'productos/:id',
+        component: ProductoDetallePage
     },
     {
         path: 'clientes',

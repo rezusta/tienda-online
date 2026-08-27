@@ -9,8 +9,17 @@
         id="user"
         type="text"
         placeholder="Usuario"
-        [(ngModel)]="user"
+        [formField]="loginForm.user"
       />
+
+      @if (loginForm.user().touched() && loginForm.user().invalid()) {
+        @for (error of loginForm.user().errors(); track error) {
+          <span class="error">
+            {{ error.message }}
+          </span>
+        }
+      }
+
     </div>
 
     <div class="form-group">
@@ -19,11 +28,11 @@
         id="password"
         type="password"
         placeholder="Contraseña"
-        [(ngModel)]="pass"
+        [formField]="loginForm.pass"
       />
     </div>
 
-    <button type="button" (click)="login()">
+    <button type="button" (click)="login()" [disabled]="loginForm().invalid()">
       Iniciar sesión
     </button>
   </div>

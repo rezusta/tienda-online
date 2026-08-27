@@ -1,4 +1,9 @@
-<h2>Lista de productos</h2>
+<div class="page-header">
+    <h2>Lista de productos</h2>
+    <a class="create-product-button" routerLink="/productos/nuevo">
+        Crear producto
+    </a>
+</div>
 
 <div class="listado-container">
     <app-productos-listado-filtro (filtroProducto)="filtraProductos($event)"></app-productos-listado-filtro>
