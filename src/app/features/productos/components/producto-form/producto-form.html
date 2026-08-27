@@ -1,0 +1,348 @@
+<div class="product-form-container">
+  <div class="form-header">
+    <div>
+      <h1>Nuevo producto</h1>
+      <p>Completa la información para añadir un producto al catálogo.</p>
+    </div>
+  </div>
+
+  <form class="product-form" novalidate (submit)="enviar($event)">
+
+    <!-- Información básica -->
+    <section class="form-section">
+      <div class="section-header">
+        <h2>Información básica</h2>
+        <p>Datos principales del producto.</p>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label for="title">Nombre del producto</label>
+          <input
+            id="title"
+            type="text"
+            [formField]="productoForm.title"
+            placeholder="Ej. iPhone 15 Pro"
+          />
+          @if (productoForm.title().touched() && productoForm.title().invalid()) {
+            @for (error of productoForm.title().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group full-width">
+          <label for="description">Descripción</label>
+          <textarea
+            id="description"
+            [formField]="productoForm.description"
+            placeholder="Describe las características del producto..."
+            rows="4"
+          ></textarea>
+          @if (productoForm.description().touched() && productoForm.description().invalid()) {
+            @for (error of productoForm.description().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="category">Categoría</label>
+          <input
+            id="category"
+            type="text"
+            [formField]="productoForm.category"
+            placeholder="Ej. Smartphones"
+          />
+          @if (productoForm.category().touched() && productoForm.category().invalid()) {
+            @for (error of productoForm.category().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="brand">Marca</label>
+          <input
+            id="brand"
+            type="text"
+            [formField]="productoForm.brand"
+            placeholder="Ej. Apple"
+          />
+          @if (productoForm.brand().touched() && productoForm.brand().invalid()) {
+            @for (error of productoForm.brand().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="sku">SKU</label>
+          <input
+            id="sku"
+            type="text"
+            [formField]="productoForm.sku"
+            placeholder="Ej. APP-IP15-256"
+          />
+          @if (productoForm.sku().touched() && productoForm.sku().invalid()) {
+            @for (error of productoForm.sku().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="availabilityStatus">Disponibilidad</label>
+          <input
+            id="availabilityStatus"
+            type="text"
+            [formField]="productoForm.availabilityStatus"
+            placeholder="Ej. En stock"
+          />
+          @if (productoForm.availabilityStatus().touched() && productoForm.availabilityStatus().invalid()) {
+            @for (error of productoForm.availabilityStatus().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Precio y stock -->
+    <section class="form-section">
+      <div class="section-header">
+        <h2>Precio e inventario</h2>
+        <p>Configura el precio y la disponibilidad del producto.</p>
+      </div>
+
+      <div class="form-grid three-columns">
+        <div class="form-group">
+          <label for="price">Precio</label>
+          <div class="input-suffix">
+            <input
+              id="price"
+              type="number"
+              [formField]="productoForm.price"
+              placeholder="0.00"
+            />
+            <span>€</span>
+          </div>
+          @if (productoForm.price().touched() && productoForm.price().invalid()) {
+            @for (error of productoForm.price().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="discountPercentage">Descuento</label>
+          <div class="input-suffix">
+            <input
+              id="discountPercentage"
+              type="number"
+              [formField]="productoForm.discountPercentage"
+              placeholder="0"
+            />
+            <span>%</span>
+          </div>
+          @if (productoForm.discountPercentage().touched() && productoForm.discountPercentage().invalid()) {
+            @for (error of productoForm.discountPercentage().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input
+            id="stock"
+            type="number"
+            [formField]="productoForm.stock"
+            placeholder="0"
+          />
+          @if (productoForm.stock().touched() && productoForm.stock().invalid()) {
+            @for (error of productoForm.stock().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="minimumOrderQuantity">Pedido mínimo</label>
+          <input
+            id="minimumOrderQuantity"
+            type="number"
+            [formField]="productoForm.minimumOrderQuantity"
+            placeholder="1"
+          />
+          @if (productoForm.minimumOrderQuantity().touched() && productoForm.minimumOrderQuantity().invalid()) {
+            @for (error of productoForm.minimumOrderQuantity().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Dimensiones -->
+    <section class="form-section">
+      <div class="section-header">
+        <h2>Peso y dimensiones</h2>
+        <p>Información física del producto.</p>
+      </div>
+
+      <div class="form-grid four-columns">
+        <div class="form-group">
+          <label for="weight">Peso</label>
+          <input
+            id="weight"
+            type="number"
+            [formField]="productoForm.weight"
+            placeholder="0"
+          />
+          @if (productoForm.weight().touched() && productoForm.weight().invalid()) {
+            @for (error of productoForm.weight().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="width">Ancho</label>
+          <input
+            id="width"
+            type="number"
+            [formField]="productoForm.dimensions.width"
+            placeholder="0"
+          />
+          @if (productoForm.dimensions.width().touched() && productoForm.dimensions.width().invalid()) {
+            @for (error of productoForm.dimensions.width().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="height">Alto</label>
+          <input
+            id="height"
+            type="number"
+            [formField]="productoForm.dimensions.height"
+            placeholder="0"
+          />
+          @if (productoForm.dimensions.height().touched() && productoForm.dimensions.height().invalid()) {
+            @for (error of productoForm.dimensions.height().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="depth">Profundidad</label>
+          <input
+            id="depth"
+            type="number"
+            [formField]="productoForm.dimensions.depth"
+            placeholder="0"
+          />
+          @if (productoForm.dimensions.depth().touched() && productoForm.dimensions.depth().invalid()) {
+            @for (error of productoForm.dimensions.depth().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Envío y garantía -->
+    <section class="form-section">
+      <div class="section-header">
+        <h2>Envío, garantía y devoluciones</h2>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="warrantyInformation">Garantía</label>
+          <input
+            id="warrantyInformation"
+            type="text"
+            [formField]="productoForm.warrantyInformation"
+            placeholder="Ej. 2 años"
+          />
+          @if (productoForm.warrantyInformation().touched() && productoForm.warrantyInformation().invalid()) {
+            @for (error of productoForm.warrantyInformation().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="shippingInformation">Información de envío</label>
+          <input
+            id="shippingInformation"
+            type="text"
+            [formField]="productoForm.shippingInformation"
+            placeholder="Ej. Envío en 3-5 días"
+          />
+          @if (productoForm.shippingInformation().touched() && productoForm.shippingInformation().invalid()) {
+            @for (error of productoForm.shippingInformation().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+
+        <div class="form-group full-width">
+          <label for="returnPolicy">Política de devolución</label>
+          <input
+            id="returnPolicy"
+            type="text"
+            [formField]="productoForm.returnPolicy"
+            placeholder="Ej. Devolución disponible durante 30 días"
+          />
+          @if (productoForm.returnPolicy().touched() && productoForm.returnPolicy().invalid()) {
+            @for (error of productoForm.returnPolicy().errors(); track error.kind) {
+              <span class="error" role="alert">{{ error.message }}</span>
+            }
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Imagen -->
+    <section class="form-section">
+      <div class="section-header">
+        <h2>Imagen del producto</h2>
+      </div>
+
+      <div class="form-group">
+        <label for="thumbnail">URL de la imagen</label>
+        <input
+          id="thumbnail"
+          type="url"
+          [formField]="productoForm.thumbnail"
+          placeholder="https://..."
+          autocomplete="url"
+        />
+        <small>Introduce la URL de la imagen principal del producto.</small>
+        @if (productoForm.thumbnail().touched() && productoForm.thumbnail().invalid()) {
+          @for (error of productoForm.thumbnail().errors(); track error.kind) {
+            <span class="error" role="alert">{{ error.message }}</span>
+          }
+        }
+      </div>
+    </section>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="cancelar.emit()">
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="isSubmitting()"
+      >
+        {{ isSubmitting() ? 'Guardando...' : 'Crear producto' }}
+      </button>
+    </div>
+  </form>
+</div>
