@@ -3,7 +3,7 @@ import { Observable, delay, of, throwError } from 'rxjs';
 import { LoginRequest, LoginResponse, Rol, TokenPayload } from '../../features/auth/models/auth.interface';
 import { generarToken, leerToken } from '../auth/token.util';
 
-const PREFIJO_API = '/api/';
+const PREFIJO_API = 'https://dummyjson.com/';
 const DURACION_SESION_MS = 15 * 60 * 1000;
 const RETARDO_MS = 400;
 
@@ -20,8 +20,8 @@ const USUARIOS: UsuarioMock[] = [
 
 /** Endpoints protegidos y roles permitidos. Por defecto: lectura para todos, escritura solo EDITOR. */
 const PERMISOS: { patron: RegExp; metodos: string[]; roles: Rol[] }[] = [
-  { patron: /^\/api\//, metodos: ['GET', 'HEAD', 'OPTIONS'], roles: ['LECTOR', 'EDITOR'] },
-  { patron: /^\/api\//, metodos: ['POST', 'PUT', 'PATCH', 'DELETE'], roles: ['EDITOR'] },
+  { patron: /^\/products\//, metodos: ['GET', 'HEAD', 'OPTIONS'], roles: ['LECTOR', 'EDITOR'] },
+  { patron: /^\/products\//, metodos: ['POST', 'PUT', 'PATCH', 'DELETE'], roles: ['EDITOR'] },
 ];
 
 function responder<T>(body: T, status = 200): Observable<HttpEvent<unknown>> {
