@@ -47,7 +47,7 @@ function rolesPermitidos(url: string, metodo: string): Rol[] | null {
 
 /** Backend simulado de autenticación/autorización para las rutas `/api/*`. */
 export const authMockInterceptor: HttpInterceptorFn = (req, next) => {
-  const url = req.url.startsWith(PREFIJO_API) ? req.url : null;
+  const url = req.url.startsWith(PREFIJO_API) || req.url.startsWith('/api/') ? req.url : null;
   if (!url) {
     return next(req);
   }
