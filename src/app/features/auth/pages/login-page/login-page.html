@@ -1,4 +1,4 @@
-<div class="login-page">
+<form class="login-page" [formRoot]="loginForm">
   <div class="login-card">
     <h2>Iniciar sesión</h2>
     <p class="subtitle">Introduce tus credenciales para continuar</p>
@@ -19,7 +19,6 @@
           </span>
         }
       }
-
     </div>
 
     <div class="form-group">
@@ -30,10 +29,17 @@
         placeholder="Contraseña"
         [formField]="loginForm.pass"
       />
+      @if (loginForm.pass().touched() && loginForm.pass().invalid()) {
+        @for (error of loginForm.pass().errors(); track error.kind) {
+          <span class="error">
+            {{ error.message }}
+          </span>
+        }
+      }
     </div>
 
-    <button type="button" (click)="login()" [disabled]="loginForm().invalid()">
-      Iniciar sesión
+    <button type="submit" [disabled]="loginForm().invalid() || loginForm().submitting()">
+      {{ loginForm().submitting() ? 'Accediendo...' : 'Iniciar sesión' }}
     </button>
   </div>
-</div>
+</form>

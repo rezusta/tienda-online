@@ -1,10 +1,22 @@
 <header>
   <h1>{{ titulo }}</h1>
 
-  <nav>
-    <a routerLink="productos">Productos</a>
-    <a routerLink="clientes">Clientes</a>
-  </nav>
+  @if (idLogged()){
+    <nav>
+      <a routerLink="productos">Productos</a>
 
-  <a routerLink="login" class="logout">Logout</a>
+      @if (isEditor()){
+        <a routerLink="clientes">Clientes</a>
+      }
+
+    </nav>
+
+    <div class="logout">
+      @if (userLogged()){
+        <span>{{ userLogged() }},</span>
+      }
+
+      <a (click)="logout.emit()">Logout</a>
+    </div>
+  }
 </header>
