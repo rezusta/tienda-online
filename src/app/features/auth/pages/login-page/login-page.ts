@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { disabled, form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { Router, ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { AuthService } from '../../services/auth-service';
+import { AuthService } from '../../../../core/services/auth-service';
 
 @Component({
   selector: 'app-login-page',

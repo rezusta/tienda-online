@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Service, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { leerToken } from '../../../core/auth/token.util';
-import { LoginRequest, LoginResponse, Rol } from '../models/auth.interface';
+import { leerToken } from '../auth/token.util';
+import { LoginRequest, LoginResponse, Rol } from '../../features/auth/models/auth.interface';
 
 const SESSION_STORAGE_KEY = 'tienda-online.auth';
 
