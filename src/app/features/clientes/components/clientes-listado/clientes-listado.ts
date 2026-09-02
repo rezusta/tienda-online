@@ -1,10 +1,9 @@
-import { Component, input, OnInit, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Cliente, ClientesResponse } from '../../models/cliente.interface';
-import { ClientesListadoFiltro } from '../clientes-listado-filtro/clientes-listado-filtro';
 
 @Component({
   selector: 'app-clientes-listado',
-  imports: [ClientesListadoFiltro],
+  imports: [],
   templateUrl: './clientes-listado.html',
   styleUrl: './clientes-listado.css',
 })
