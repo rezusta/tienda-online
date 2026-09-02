@@ -14,6 +14,7 @@ import { AuthService } from '../../../../core/services/auth-service';
 export class LoginPage {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+
   private readonly authService = inject(AuthService);
 
   readonly loginModel = signal({
@@ -21,13 +22,31 @@ export class LoginPage {
     pass: '',
   });
 
-  loginForm = form(this.loginModel, (schemaPath) => {
-    required(schemaPath.user, { message: 'El usuario es obligatorio' });
-    required(schemaPath.pass, { message: 'La contraseña es obligatoria' });
-  });
+  loginForm = form(this.loginModel, (schemaPath) => 
+    {
+      required(schemaPath.user, { message: 'El usuario es obligatorio' });
+      required(schemaPath.pass, { message: 'La contraseña es obligatoria' });
+    },
+    {
+      submission: {
+        action: async (model) => {
+          try 
+          {
+            await firstValueFrom(this.authService.login(model().value()))
+            this.router.navigate(['/productos']);
+            return;
+          } 
+          catch (error) 
+          {
+            return {
+              kind: 'credentials',
+              message: 'Contraseña o usuario incorrectos',
+              fieldTree: model.pass
+            }
+          }
+        }
+      }
+    }
+  );
 
-  login() {
-    console.log(this.loginModel());
-    console.log(this.loginForm().value());
-  }
 }
