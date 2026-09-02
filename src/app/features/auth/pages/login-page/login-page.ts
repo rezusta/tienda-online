@@ -33,7 +33,8 @@ export class LoginPage {
           try 
           {
             await firstValueFrom(this.authService.login(model().value()))
-            this.router.navigate(['/productos']);
+            const urlPrevia = this.route.snapshot.queryParamMap.get('urlActual') ?? '/productos';
+            this.router.navigate([urlPrevia]);
             return;
           } 
           catch (error) 

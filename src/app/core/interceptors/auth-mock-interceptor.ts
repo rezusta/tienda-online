@@ -180,7 +180,7 @@ export const authMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   // AUTENTICACIÓN
-  /*const autorizacion =
+  const autorizacion =
     req.headers.get('Authorization') ?? '';
 
   const payload = leerToken(
@@ -214,7 +214,7 @@ export const authMockInterceptor: HttpInterceptorFn = (req, next) => {
       user: payload.user,
       rol: payload.rol,
     });
-  }*/
+  }
 
   return next(req);
 };
