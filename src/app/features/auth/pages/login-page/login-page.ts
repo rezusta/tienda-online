@@ -21,32 +21,14 @@ export class LoginPage {
     pass: '',
   });
 
-  readonly loginForm = form(
-    this.loginModel,
-    (schemaPath) => {
-      required(schemaPath.user, { message: 'El usuario es obligatorio' });
-      required(schemaPath.pass, { message: 'La contraseña es obligatoria' });
-      disabled(schemaPath.pass, { when: ({ valueOf }) => !valueOf(schemaPath.user) });
-    },
-    {
-      submission: {
-        action: async (fields) => {
-          try {
-            await firstValueFrom(this.authService.login(fields().value()));
-            const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/productos';
-            await this.router.navigateByUrl(returnUrl);
-            return;
-          } catch (error: unknown) {
-            const message = error instanceof HttpErrorResponse ? error.error?.message ?? error.error?.message : 'No se ha podido iniciar sesión';
+  loginForm = form(this.loginModel, (schemaPath) => {
+    required(schemaPath.user, { message: 'El usuario es obligatorio' });
+    required(schemaPath.pass, { message: 'La contraseña es obligatoria' });
+    disabled(schemaPath.pass, { when: ({valueOf}) => !valueOf(schemaPath.user) });
+  });
 
-            return {
-              kind: 'credentials',
-              message,
-              fieldTree: fields.pass,
-            };
-          }
-        },
-      },
-    }
-  );
+  login() {
+    console.log(this.loginModel());
+    console.log(this.loginForm().value());
+  }
 }
