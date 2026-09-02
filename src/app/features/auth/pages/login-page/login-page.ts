@@ -24,7 +24,6 @@ export class LoginPage {
   loginForm = form(this.loginModel, (schemaPath) => {
     required(schemaPath.user, { message: 'El usuario es obligatorio' });
     required(schemaPath.pass, { message: 'La contraseña es obligatoria' });
-    disabled(schemaPath.pass, { when: ({valueOf}) => !valueOf(schemaPath.user) });
   });
 
   login() {
